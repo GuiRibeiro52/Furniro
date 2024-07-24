@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import SubHeader from './SubHeader';
 
 const Detail = () => {
   const { id } = useParams();
@@ -24,7 +25,9 @@ const Detail = () => {
   }
 
   return (
-    <div className='container mx-auto py-10 font-poppins flex flex-col justify-center'>
+    <div >
+      <SubHeader product={product}/>
+      <div className='container mx-auto py-10 font-poppins flex flex-col justify-center'>
         <div className="flex items-center justify-center gap-[130px] text-2xl mb-9">
             <h3 className="font-medium">Description</h3>
             <h3 className="font-normal text-secondary">Additional Information</h3>
@@ -37,6 +40,7 @@ const Detail = () => {
             <img src={`/${product.image}`} alt={product.title} />
             <img src={`/${product.image}`} alt={product.title} />
         </div>
+      </div>        
     </div>
   );
 }

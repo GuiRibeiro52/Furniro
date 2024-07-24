@@ -14,7 +14,8 @@ module.exports = {
         tertiary: '#898989',
         quartiary: "#f4f5f7",
         button: '#b88e2f',
-        focused: "#3a3a3a"
+        focused: "#3a3a3a",
+        subheader: "#f9f1e7"
       }, 
     },
   },
