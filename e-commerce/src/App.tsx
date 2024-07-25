@@ -12,7 +12,7 @@ function App() {
       const itemIndex = prevItems.findIndex(item => item.id === newItem.id);
       if (itemIndex > -1) {
         const updatedItems = [...prevItems];
-        updatedItems[itemIndex].quantity += newItem.quantity;
+        updatedItems[itemIndex].quantity = newItem.quantity;
         return updatedItems;
       }
       return [...prevItems, newItem];
@@ -27,7 +27,7 @@ function App() {
     <div className='w-auto'>
       <Header cartItems={cartItems} removeFromCart={removeFromCart} />
       <div>
-        <Outlet context={{ updateCart }} />
+        <Outlet context={{ cartItems, updateCart, removeFromCart }} />
       </div>
       <Footer />
     </div>
