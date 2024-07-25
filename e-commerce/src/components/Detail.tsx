@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useOutletContext } from 'react-router-dom';
 import SubHeader from './SubHeader';
-import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { AiFillTwitterCircle } from "react-icons/ai";
 
-const Detail = ({ updateCart }) => {
+const Detail = () => {
+  const { updateCart } = useOutletContext();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState('');
@@ -29,7 +30,15 @@ const Detail = ({ updateCart }) => {
   }, [id]);
 
   const handleAddToCart = () => {
-    updateCart(quantity);
+    updateCart({
+      id: product.id,
+      title: product.title,
+      image: product.image,
+      price: product.price,
+      quantity,
+      size: selectedSize,
+      color: selectedColor,
+    });
   };
 
   if (!product) {
