@@ -11,6 +11,10 @@ const Header = ({ cartItems, removeFromCart }) => {
     setIsCartOpen(!isCartOpen);
   };
 
+  const handleCloseCart = () => {
+    setIsCartOpen(false);
+  };
+
   const handleKeyPress = (event) => {
     if (event.key === "Escape") {
       setIsCartOpen(false);
@@ -54,7 +58,7 @@ const Header = ({ cartItems, removeFromCart }) => {
       {isCartOpen && (
         <>
           <div className='fixed inset-0 bg-black bg-opacity-20 z-40' onClick={handleCartClick}></div>
-          <div className='fixed top-0 right-0 w-[417px] h-[746px] bg-white shadow-lg z-50 p-4 font-poppins flex flex-col'>
+          <div className='fixed top-0 right-0 w-[430px] h-[746px] bg-white shadow-lg z-50 p-4 font-poppins flex flex-col'>
             <div className='border-b w-[287px]'>
               <h2 className='text-xl font-bold mb-4 mt-4'>Shopping Cart</h2>
             </div>
@@ -73,7 +77,7 @@ const Header = ({ cartItems, removeFromCart }) => {
                       <p className='font-medium'>R$ {(item.price * item.quantity).toFixed(2)}</p>
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className='ml-4 bg-button text-white rounded-full w-6 h-6 flex items-center justify-center'
+                        className='ml-4 bg-secondary text-white rounded-full w-6 h-6 flex items-center justify-center'
                       >
                         x
                       </button>
@@ -88,7 +92,7 @@ const Header = ({ cartItems, removeFromCart }) => {
                 <p className='font-bold text-button mb-[23px]'>R$ {totalPrice.toFixed(2)}</p>
               </div>              
               <div className='flex justify-between mt-4 text-xs'>
-                <Link to={'/cart'} >
+                <Link to="/cart" onClick={handleCloseCart}>
                   <button className='border border-black rounded-[50px] w-[87px] h-[30px]'>Cart</button>                
                 </Link>
                 <button className='border border-black rounded-[50px] w-[118px]'>Checkout</button>
