@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import share from '../assets/share.png';
 import compare from '../assets/compare.png';
 import Heart from '../assets/Heart.png'
+import Filter from '../components/Filter';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -41,6 +42,7 @@ const Shop = () => {
   return (
     <div>
       <BannerTop pageName="Shop"/>
+      <Filter />
       <div className="container mx-auto py-10 font-poppins">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {getPaginatedProducts().map(product => (
