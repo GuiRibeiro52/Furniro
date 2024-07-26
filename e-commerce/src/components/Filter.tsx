@@ -56,7 +56,7 @@ const Filter = ({ onFilterChange, onItemsPerPageChange, onSortChange, totalResul
             </select>
           </div>
           <div>
-            <span>Sort by </span>
+            <span>Short by </span>
             <select onChange={(e) => onSortChange(e.target.value)} className="border border-gray-300 rounded">
               <option value="Default">Default</option>
               <option value="A to Z">A to Z</option>
