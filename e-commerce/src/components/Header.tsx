@@ -1,11 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../services/firebaseConfig.js';
 
 const Header = ({ cartItems, removeFromCart }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const handleCartClick = () => {
     setIsCartOpen(!isCartOpen);
@@ -15,9 +20,18 @@ const Header = ({ cartItems, removeFromCart }) => {
     setIsCartOpen(false);
   };
 
+  const handleUserClick = () => {
+    setIsUserModalOpen(!isUserModalOpen);
+  };
+
+  const handleCloseUserModal = () => {
+    setIsUserModalOpen(false);
+  };
+
   const handleKeyPress = (event) => {
     if (event.key === "Escape") {
       setIsCartOpen(false);
+      setIsUserModalOpen(false);
     }
   };
 
@@ -31,6 +45,11 @@ const Header = ({ cartItems, removeFromCart }) => {
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
+  const handleLogout = () => {
+    auth.signOut();
+    handleCloseUserModal();
+  };
+
   return (
     <header className='flex items-center justify-between ml-12 mr-24 mt-8 mb-8'>
       <div>
@@ -38,14 +57,16 @@ const Header = ({ cartItems, removeFromCart }) => {
       </div>
       <div>
         <ul className='flex gap-[75px]'>
-          <li className='font-poppins text-base font-medium'><Link to={"/"}>Home</Link></li>          
-          <li className='font-poppins text-base font-medium'><Link to={"/shop"}>Shop</Link></li>          
-          <li className='font-poppins text-base font-medium'><Link to={"/about"}>About</Link></li>          
-          <li className='font-poppins text-base font-medium'><Link to={"/contact"}>Contact</Link></li>          
-        </ul> 
+          <li className='font-poppins text-base font-medium'><Link to={"/"}>Home</Link></li>
+          <li className='font-poppins text-base font-medium'><Link to={"/shop"}>Shop</Link></li>
+          <li className='font-poppins text-base font-medium'><Link to={"/about"}>About</Link></li>
+          <li className='font-poppins text-base font-medium'><Link to={"/contact"}>Contact</Link></li>
+        </ul>
       </div>
       <div className='flex gap-8 items-center relative'>
-        <FaRegUser size={24} />
+        <div className='relative cursor-pointer font-poppins' onClick={handleUserClick}>
+          <FaRegUser size={24} />
+        </div>
         <div className='relative cursor-pointer font-poppins' onClick={handleCartClick}>
           <AiOutlineShoppingCart size={28} />
           {totalItems > 0 && (
@@ -55,10 +76,38 @@ const Header = ({ cartItems, removeFromCart }) => {
           )}
         </div>
       </div>
+      {isUserModalOpen && (
+        <>
+          <div className='fixed inset-0 bg-black bg-opacity-20 z-40' onClick={handleUserClick}></div>
+          <div className='fixed top-0 right-0 w-[430px] h-[746px] bg-white shadow-lg z-50 p-4 font-poppins flex flex-col justify-center rounded-xl'>
+            {user ? (
+              <>
+                <p className='text-center mb-10'>Logado como: {user.email}</p>
+                <button
+                  onClick={handleLogout}
+                  className="mt-4 px-4 py-2 bg-red-500 text-white rounded self-center w-[222px]"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <p className='text-center mb-10'>Parece que você não está logado</p>
+                <button
+                  onClick={() => navigate('/login')}
+                  className="mt-4 px-4 py-2 bg-button text-white rounded self-center w-[222px]"
+                >
+                  Login
+                </button>
+              </>
+            )}
+          </div>
+        </>
+      )}
       {isCartOpen && (
         <>
           <div className='fixed inset-0 bg-black bg-opacity-20 z-40' onClick={handleCartClick}></div>
-          <div className='fixed top-0 right-0 w-[430px] h-[746px] bg-white shadow-lg z-50 p-4 font-poppins flex flex-col'>
+          <div className='fixed top-0 right-0 w-[430px] h-[746px] bg-white shadow-lg z-50 p-4 font-poppins flex flex-col rounded-xl'>
             <div className='border-b w-[287px]'>
               <h2 className='text-xl font-bold mb-4 mt-4'>Shopping Cart</h2>
             </div>
@@ -84,16 +133,16 @@ const Header = ({ cartItems, removeFromCart }) => {
                     </div>
                   </li>
                 ))}
-              </ul>              
+              </ul>
             </div>
             <div className='mt-4 pt-4 mb-7'>
               <div className='flex justify-between border-b'>
                 <p className='font-nomal text-base '>Subtotal: </p>
                 <p className='font-bold text-button mb-[23px]'>R$ {totalPrice.toFixed(2)}</p>
-              </div>              
+              </div>
               <div className='flex justify-between mt-4 text-xs'>
                 <Link to="/cart" onClick={handleCloseCart}>
-                  <button className='border border-black rounded-[50px] w-[87px] h-[30px]'>Cart</button>                
+                  <button className='border border-black rounded-[50px] w-[87px] h-[30px]'>Cart</button>
                 </Link>
                 <button className='border border-black rounded-[50px] w-[118px]'>Checkout</button>
                 <button className='border border-black rounded-[50px] w-[135px]'>Comparison</button>

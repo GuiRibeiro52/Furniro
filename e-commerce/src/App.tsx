@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import './index.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const location = useLocation();
 
   const updateCart = (newItem) => {
     setCartItems((prevItems) => {
@@ -23,15 +24,18 @@ function App() {
     setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <div className='w-auto'>
-      <Header cartItems={cartItems} removeFromCart={removeFromCart} />
+      {!isAuthPage && <Header cartItems={cartItems} removeFromCart={removeFromCart} />}
       <div>
         <Outlet context={{ cartItems, updateCart, removeFromCart }} />
       </div>
-      <Footer />
+      {!isAuthPage && <Footer />}
     </div>
   );
 }
 
 export default App;
+
