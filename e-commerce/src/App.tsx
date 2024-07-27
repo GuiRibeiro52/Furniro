@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import './index.css';
 import Header from './components/Header';
@@ -7,6 +7,17 @@ import Footer from './components/Footer';
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const location = useLocation();
+
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const updateCart = (newItem) => {
     setCartItems((prevItems) => {
@@ -38,4 +49,3 @@ function App() {
 }
 
 export default App;
-

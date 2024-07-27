@@ -27,7 +27,8 @@ const Shop = () => {
     };
 
     fetchProducts();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [itemsPerPage]);
 
   useEffect(() => {
     let sortedProducts = [...filteredProducts];
@@ -99,7 +100,7 @@ const Shop = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-10 gap-[38px]">
+        <div className="flex justify-center mt-11 mb-11 gap-[38px]">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}

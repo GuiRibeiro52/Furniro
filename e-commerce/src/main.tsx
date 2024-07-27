@@ -12,7 +12,7 @@ import Contact from './pages/Contact.tsx'
 import Shop from './pages/Shop.tsx'
 import Cart from './pages/Cart.tsx'
 import Checkout from './pages/Checkout.tsx'
-import Detail from './components/Detail.tsx'
+import Detail from './pages/Detail.tsx'
 import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 
