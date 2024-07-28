@@ -1,11 +1,12 @@
-import { useOutletContext, Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext'; // Import the Cart context
 import BannerBot from "../components/BannerBot";
 import BannerTop from "../components/BannerTop";
 import { useState, useEffect } from 'react';
 import { FaTrash } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems = [], updateCart, removeFromCart } = useOutletContext();
+  const { cartItems, updateCart, removeFromCart } = useCart(); // Use the Cart context
   const [quantities, setQuantities] = useState(cartItems.map(item => item.quantity));
 
   useEffect(() => {

@@ -4,12 +4,14 @@ import { FaRegUser } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../services/firebaseConfig.js';
+import { auth } from '../services/firebaseConfig';
+import { useCart } from '../context/CartContext';
 
-const Header = ({ cartItems, removeFromCart }) => {
+const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [user] = useAuthState(auth);
+  const { cartItems, removeFromCart } = useCart();
   const navigate = useNavigate();
 
   const handleCartClick = () => {
@@ -144,9 +146,9 @@ const Header = ({ cartItems, removeFromCart }) => {
                 <Link to="/cart" onClick={handleCloseCart}>
                   <button className='border border-black rounded-[50px] w-[87px] h-[30px]'>Cart</button>
                 </Link>
-                <Link to="/checkout" onClick={handleCloseCart}>
+                <Link to='/checkout' onClick={handleCloseCart}>
                   <button className='border border-black rounded-[50px] w-[118px] h-[30px]'>Checkout</button>
-                </Link>
+                </Link>                
                 <button className='border border-black rounded-[50px] w-[135px]'>Comparison</button>
               </div>
             </div>
