@@ -11,10 +11,11 @@ import About from './pages/About.tsx'
 import Contact from './pages/Contact.tsx'
 import Shop from './pages/Shop.tsx'
 import Cart from './pages/Cart.tsx'
-import Checkout from './pages/Checkout.tsx'
-import Detail from './components/Detail.tsx'
+import CheckOut from './components/CheckOut.tsx'
+import Detail from './pages/Detail.tsx'
 import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
+import ProtectedRoute from './routes/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout />
+        element: (
+          <ProtectedRoute>
+            <CheckOut/>
+          </ProtectedRoute>
+        )
       },
       {
         path: "/product/:id",
