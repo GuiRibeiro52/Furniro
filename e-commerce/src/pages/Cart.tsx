@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 import BannerBot from "../components/BannerBot";
 import BannerTop from "../components/BannerTop";
 import { useState, useEffect } from 'react';
@@ -96,9 +96,10 @@ const Cart = () => {
               <span className="text-yellow-500 font-bold">R$ {totalPrice.toFixed(2)}</span>
             </div>
             <div className='flex justify-center'>
-              <button className="w-[222px] py-2 mt-4 border border-black rounded-2xl text-xl">Check Out</button>
+              <Link to="/checkout">
+                <button className="w-[222px] py-2 mt-4 border border-black rounded-2xl text-xl">Check Out</button>
+              </Link>
             </div>
-           
           </div>
         </div>
       </div>
