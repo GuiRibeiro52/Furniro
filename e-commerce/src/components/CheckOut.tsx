@@ -1,85 +1,28 @@
-import BannerBot from "./BannerBot";
-import BannerTop from "./BannerTop";
-import { Link, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+import BannerBot from "../components/BannerBot";
+import BannerTop from "../components/BannerTop";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCart } from "../context/CartContext";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../services/firebaseConfig";
 
 const CheckOut = () => {
-  const { cartItems } = useOutletContext();
+  const { cartItems } = useCart();
   const [selectedPayment, setSelectedPayment] = useState("");
-
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    zipCode: '',
-    email: '',
-    companyName: '',
-    country: '',
-    streetAddress: '',
-    town: '',
-    province: '',
-    addOnAddress: '',
-  });
-
-  const [errors, setErrors] = useState({
-    firstName: '',
-    lastName: '',
-    zipCode: '',
-    email: '',
-  });
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
   const handlePaymentChange = (event) => {
     setSelectedPayment(event.target.value);
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleValidation = () => {
-    let valid = true;
-    let errors = {};
-
-    // First Name Validation
-    if (!/^[A-Za-z]+$/.test(formData.firstName)) {
-      errors.firstName = "First name must contain only letters";
-      valid = false;
-    }
-
-    // Last Name Validation
-    if (!/^[A-Za-z]+$/.test(formData.lastName)) {
-      errors.lastName = "Last name must contain only letters";
-      valid = false;
-    }
-
-    // ZIP Code Validation
-    if (!/^\d+$/.test(formData.zipCode)) {
-      errors.zipCode = "ZIP code must contain only numbers";
-      valid = false;
-    }
-
-    // Email Validation
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = "Email must be in the format email@example.com";
-      valid = false;
-    }
-
-    setErrors(errors);
-    return valid;
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (handleValidation()) {
-      // Handle form submission
-      console.log("Form is valid");
-    }
-  };
-
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  if (!user || cartItems.length === 0) {
+    navigate("/");
+    return null;
+  }
 
   return (
     <div>
@@ -87,104 +30,37 @@ const CheckOut = () => {
       <div className="container mx-auto py-10 flex flex-col justify-between md:flex-row font-poppins">
         <div>
           <h2 className="text-3xl font-semibold mb-6">Billing details</h2>
-          <form className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
+          <form className="space-y-4 flex flex-col">
             <div className="flex space-x-4 justify-between">
               <div className="w-[50%] h-[75px] mb-5">
                 <p className="mb-5">First Name</p>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                  className="px-3 py-2 border rounded-xl"
-                />
-                {errors.firstName && <p className="text-red-500 text-xs">{errors.firstName}</p>}
+                <input type="text" className="px-3 py-2 border rounded-xl" />
               </div>
               <div className="w-[50%] h-[75px] mb-5">
                 <p className="mb-5">Last Name</p>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                  className="px-3 py-2 border rounded-xl"
-                />
-                {errors.lastName && <p className="text-red-500 text-xs">{errors.lastName}</p>}
+                <input type="text" className="px-3 py-2 border rounded-xl" />
               </div>
             </div>
             <p className="mb-5">Company Name (Optional)</p>
-            <input
-              type="text"
-              name="companyName"
-              value={formData.companyName}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
+            <input type="text" className="px-3 py-2 border rounded-xl" />
             <p className="mb-5">ZIP code</p>
-            <input
-              type="text"
-              name="zipCode"
-              value={formData.zipCode}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
-            {errors.zipCode && <p className="text-red-500 text-xs">{errors.zipCode}</p>}
+            <input type="text" className="px-3 py-2 border rounded-xl" />
             <p className="mb-5">Country / Region</p>
-            <input
-              type="text"
-              name="country"
-              value={formData.country}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
+            <input type="text" className="px-3 py-2 border rounded-xl" />
             <p className="mb-5">Street address</p>
-            <input
-              type="text"
-              name="streetAddress"
-              value={formData.streetAddress}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
+            <input type="text" className="px-3 py-2 border rounded-xl" />
             <p className="mb-5">Town / City</p>
-            <input
-              type="text"
-              name="town"
-              value={formData.town}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
+            <input type="text" className="px-3 py-2 border rounded-xl" />
             <p className="mb-5">Province</p>
-            <input
-              type="text"
-              name="province"
-              value={formData.province}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
+            <input type="text" className="px-3 py-2 border rounded-xl" />
             <p className="mb-5">Add-on address</p>
-            <input
-              type="text"
-              name="addOnAddress"
-              value={formData.addOnAddress}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl"
-            />
-            <p className="mb-5">Email</p>
-            <input
-              type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="px-3 py-2 border rounded-xl mb-5"
-            />
-            {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+            <input type="text" className="px-3 py-2 border rounded-xl" />
+            <p className="mb-5">email</p>
+            <input type="text" className="px-3 py-2 border rounded-xl mb-5" />
             <textarea
               placeholder="Additional information"
               className="px-3 py-2 border rounded-xl"
             ></textarea>
-            <button type="submit" className="w-full px-4 py-2 text-white bg-button rounded-md hover:bg-[#b88f2fe5] focus:outline-none focus:ring-2 focus:ring-button">
-              Submit
-            </button>
           </form>
         </div>
         <div className="w-[608px] p-4">
@@ -221,9 +97,8 @@ const CheckOut = () => {
                   type="radio"
                   name="payment"
                   value="bankTransfer"
-                  className="mr-2 form-radio checked:bg-black"
+                  className="mr-2"
                   onChange={handlePaymentChange}
-                  checked={selectedPayment === "bankTransfer"}
                 />
                 Direct Bank Transfer
               </label>
@@ -243,9 +118,8 @@ const CheckOut = () => {
                   type="radio"
                   name="payment"
                   value="pix"
-                  className="mr-2 form-radio checked:bg-black"
+                  className="mr-2"
                   onChange={handlePaymentChange}
-                  checked={selectedPayment === "pix"}
                 />
                 PIX
               </label>
@@ -261,9 +135,8 @@ const CheckOut = () => {
                   type="radio"
                   name="payment"
                   value="cashOnDelivery"
-                  className="mr-2 form-radio checked:bg-black"
+                  className="mr-2"
                   onChange={handlePaymentChange}
-                  checked={selectedPayment === "cashOnDelivery"}
                 />
                 Cash On Delivery
               </label>
@@ -278,12 +151,9 @@ const CheckOut = () => {
                 privacy policy.
               </Link>
             </p>
-            <div className="flex justify-center">
-              <button className="w-[318px] h-[64px] mt-6 border border-black rounded-2xl text-xl">
+            <button className="w-[318px] h-[64px] mt-6 border border-black rounded-2xl text-xl">
               Place order
             </button>
-            </div>
-            
           </div>
         </div>
       </div>

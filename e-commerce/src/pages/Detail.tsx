@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, useOutletContext } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import SubHeader from '../components/SubHeader';
 import RelatedDetails from '../components/RelatedDetails';
+import { useCart } from '../context/CartContext'; // Import the Cart context
 
 const Detail = () => {
-  const { updateCart } = useOutletContext();
+  const { updateCart } = useCart(); // Use the Cart context
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState('');
