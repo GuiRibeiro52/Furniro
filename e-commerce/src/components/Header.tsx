@@ -146,7 +146,9 @@ const Header = () => {
                 <Link to="/cart" onClick={handleCloseCart}>
                   <button className='border border-black rounded-[50px] w-[87px] h-[30px]'>Cart</button>
                 </Link>
-                <button className='border border-black rounded-[50px] w-[118px]'>Checkout</button>
+                <Link to='/checkout' onClick={handleCloseCart}>
+                  <button className='border border-black rounded-[50px] w-[118px] h-[30px]'>Checkout</button>
+                </Link>                
                 <button className='border border-black rounded-[50px] w-[135px]'>Comparison</button>
               </div>
             </div>
