@@ -16,6 +16,7 @@ const Detail = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,6 +34,10 @@ const Detail = () => {
   }, [id]);
 
   const handleAddToCart = () => {
+    if (!selectedSize || !selectedColor) {
+      setError('Please select a size and a color.');
+      return;
+    }
     updateCart({
       id: product.id,
       title: product.title,
@@ -42,6 +47,7 @@ const Detail = () => {
       size: selectedSize,
       color: selectedColor,
     });
+    setError('');
   };
 
   if (!product) {
@@ -123,6 +129,7 @@ const Detail = () => {
               Add To Cart
             </button>
           </div>
+          {error && <p className="text-red-500">{error}</p>}
           <div className='border-t flex flex-col gap-[12px] text-base mb-[67px]'>
             <p className='mt-[41px] text-secondary'>SKU: {product.sku}</p>
             <p className='text-secondary'>Category: {product.category}</p>

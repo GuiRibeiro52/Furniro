@@ -135,7 +135,7 @@ const CheckOut = () => {
           <ul className="space-y-4">
             {cartItems.map((item) => (
               <li key={item.id} className="flex justify-between">
-                <span className="text-secondary">{item.title}</span>
+                <span className="text-secondary">{item.title} | {item.size}</span>
                 <span className="font-light">R$ {item.price.toFixed(2)}</span>
               </li>
             ))}

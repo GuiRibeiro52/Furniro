@@ -121,6 +121,7 @@ const Header = () => {
                       <img src={`${item.image}`} alt={item.title} className='w-24 h-24 object-cover rounded'/>
                       <div className='ml-4'>
                         <p className='font-normal'>{item.title}</p>
+                        <p className='font-normal'>Tamanho: {item.size}</p>
                         <p className='font-light text-base'>{item.quantity} x <span className='text-button font-bold text-xs'>R$ {item.price.toFixed(2)}</span></p>
                       </div>
                     </div>
