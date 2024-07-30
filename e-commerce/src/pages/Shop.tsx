@@ -1,5 +1,7 @@
+// Shop.tsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import BannerBot from "../components/BannerBot";
 import BannerTop from "../components/BannerTop";
 import { Link } from 'react-router-dom';
@@ -9,6 +11,7 @@ import Heart from '../assets/Heart.png';
 import Filter from '../components/Filter';
 
 const Shop = () => {
+  const location = useLocation();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,6 +32,13 @@ const Shop = () => {
     fetchProducts();
     window.scrollTo(0, 0);
   }, [itemsPerPage]);
+
+  useEffect(() => {
+    if (location.state && location.state.categories) {
+      const categories = location.state.categories;
+      setFilteredProducts(products.filter(product => categories.some(category => product.category.includes(category))));
+    }
+  }, [location.state, products]);
 
   useEffect(() => {
     let sortedProducts = [...filteredProducts];
@@ -52,6 +62,7 @@ const Shop = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    window.scrollTo(0, 0);
   };
 
   const handleFilterChange = (category) => {
@@ -84,7 +95,7 @@ const Shop = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {getPaginatedProducts().map(product => (
             <div key={product.id} className="w-[285px] h-[446px] bg-quartiary relative group">
-              <img src={`/${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
+              <img src={`${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
               <h3 className="text-2xl font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
               <p className="text-base text-tertiary ml-4 mb-2">{product.text}</p>
               <p className="font-semibold text-xl ml-4">R$ {product.price}</p>

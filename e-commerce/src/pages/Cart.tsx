@@ -45,7 +45,7 @@ const Cart = () => {
             {cartItems.map((item, index) => (
               <tr key={item.id} >
                 <td className="py-4 flex items-center">
-                  <img src={`/${item.image}`} alt={item.title} className="w-20 h-20 object-cover rounded mr-4"/>                
+                  <img src={`${item.image}`} alt={item.title} className="w-20 h-20 object-cover rounded mr-4"/>                
                 </td>
                 <td>
                   <span className='text-secondary'>{item.title}</span>

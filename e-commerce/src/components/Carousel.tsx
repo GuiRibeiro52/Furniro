@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
@@ -10,29 +10,29 @@ const Carousel = () => {
       id: 1,
       category: "Bed Room",
       title: "Inner Peace",
-      image: "/products/grifo.png",
-      link: "/product/1"
+      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Mobly-Guarda-Roupa-Casal-com-Espelho-Paris-3-PT-2-GV-Naturale-4655-3919401-1.jpg",
+      link: "/product/27"
     },
     {
       id: 2,
       category: "Living Room",
       title: "Modern Style",
-      image: "/products/leviosa.png",
-      link: "/product/2"
+      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Mobly-SofC3A1-3-Lugares-RetrC3A1til-e-ReclinC3A1vel-Lupin-Linho-Cru-4214-5391811-2.jpg",
+      link: "/product/32"
     },
     {
       id: 3,
       category: "Office",
       title: "Professional Look",
-      image: "/products/lolito.png",
-      link: "/product/3"
+      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Mobly-Mesa-de-EscritC3B3rio-em-L-Nero-Branco-0408-661122-2.jpg",
+      link: "/product/29"
     },
     {
       id: 4,
       category: "Dining Room",
       title: "Cozy Meal",
-      image: "/products/muggo.png",
-      link: "/product/4"
+      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Madesa-ArmC3A1rio-de-Cozinha-Completa-Madesa-Emilly-Box-com-BalcC3A3o-e-AC3A9reo-Vidro---Rustic2FPreto-9860-211339-1.jpg",
+      link: "/product/20"
     },
   ];
 

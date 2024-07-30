@@ -1,13 +1,20 @@
-import OurProducts from "../components/OurProducts"
-import mosaico from '../assets/mosaico.png'
-import background from "../assets/background 1.png"
-import Dining from '../assets/Dining.png'
-import bedroom from '../assets/bedroom.png'
-import Living from '../assets/Living.png'
-import { Link } from "react-router-dom"
-import Carousel from "../components/Carousel"
+// Home.tsx
+import OurProducts from "../components/OurProducts";
+import mosaico from '../assets/mosaico.png';
+import background from "../assets/background 1.png";
+import Dining from '../assets/Dining.png';
+import bedroom from '../assets/bedroom.png';
+import Living from '../assets/Living.png';
+import { Link, useNavigate } from "react-router-dom";
+import Carousel from "../components/Carousel";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (categories) => {
+    navigate('/shop', { state: { categories } });
+  };
+
   return (
     <div className="font-poppins">
       <div className="relative mb-14">
@@ -26,15 +33,15 @@ const Home = () => {
       </div>
 
       <div className="flex items-center justify-center gap-5 mb-14">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['table', 'cabinet'])}>
           <img src={Dining} alt="Dining" className="mb-8" />
           <h3 className="font-semibold text-2xl text-headers">Dining</h3>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['sofa', 'rack'])}>
           <img src={Living} alt="Living" className="mb-8"/>
           <h3 className="font-semibold text-2xl text-headers">Living</h3>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['closet'])}>
           <img src={bedroom} alt="Bedroom" className="mb-8"/>
           <h3 className="font-semibold text-2xl text-headers">Bedroom</h3>
         </div>
@@ -50,7 +57,7 @@ const Home = () => {
       </div>
       <img src={mosaico} alt="mosaico" className="container mx-auto mb-10" />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -6,10 +6,10 @@ import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import SubHeader from '../components/SubHeader';
 import RelatedDetails from '../components/RelatedDetails';
-import { useCart } from '../context/CartContext'; // Import the Cart context
+import { useCart } from '../context/CartContext'; 
 
 const Detail = () => {
-  const { updateCart } = useCart(); // Use the Cart context
+  const { updateCart } = useCart(); 
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState('');
@@ -57,14 +57,14 @@ const Detail = () => {
             {product.images.map((img, index) => (
               <img
                 key={index}
-                src={`/${img}`}
+                src={`${img}`}
                 alt={`${product.title} ${index}`}
                 className='cursor-pointer w-[76px] h-[80px] rounded-[10px]'
                 onClick={() => setSelectedImage(img)}
               />
             ))}
           </div>
-          <img src={`/${selectedImage}`} alt={product.title} className='w-[481px] h-[500px] rounded-[10px]' />
+          <img src={`${selectedImage}`} alt={product.title} className='w-[481px] h-[500px] rounded-[10px]' />
         </div>
         <div>
           <h2 className='text-[42px] font-normal'>{product.title}</h2>
@@ -146,8 +146,8 @@ const Detail = () => {
           <p className='mb-9'>{product.additionalinfo}</p>
         </div>
         <div className='flex items-center justify-center gap-[29px]'>
-          <img src={`/${product.image}`} alt={product.title} />
-          <img src={`/${product.image}`} alt={product.title} />
+          <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]' />
+          <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]'/>
         </div>
         <div>
           <RelatedDetails category={product.category} />
