@@ -5,7 +5,7 @@ import Dining from '../assets/Dining.png'
 import bedroom from '../assets/bedroom.png'
 import Living from '../assets/Living.png'
 import { Link } from "react-router-dom"
-
+import Carousel from "../components/Carousel"
 
 const Home = () => {
   return (
@@ -41,6 +41,8 @@ const Home = () => {
       </div>
 
       <OurProducts />
+
+      <Carousel />     
 
       <div className="flex flex-col items-center ">
         <h3 className="text-[#616161] font-semibold text-xl">Share your setup with</h3>

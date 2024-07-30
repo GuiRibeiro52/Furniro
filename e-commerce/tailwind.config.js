@@ -17,7 +17,8 @@ module.exports = {
         focused: "#3a3a3a",
         subheader: "#f9f1e7",
         headers: '#333',
-        paragraph: '#666'
+        paragraph: '#666',
+        carousel: '#fcf8f3'
       }, 
     },
   },
