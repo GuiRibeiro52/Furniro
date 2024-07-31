@@ -16,6 +16,7 @@ import Detail from './pages/Detail.tsx'
 import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import ProtectedRoute from './routes/ProtectedRoute';
+import ThankYou from './pages/ThankYou.tsx'
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/thankyou",
+        element: (
+          <ProtectedRoute>
+            <ThankYou />
+          </ProtectedRoute>
+        )
       }
     ]
   }
