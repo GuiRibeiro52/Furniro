@@ -53,19 +53,19 @@ const Header = () => {
   };
 
   return (
-    <header className='flex items-center justify-between ml-12 mr-24 mt-8 mb-8'>
-      <div>
+    <header className='md:flex xl:flex items-center justify-between ml-12 mr-24 mt-8 mb-8'>
+      <div className='flex justify-center'>
         <Link to={'/'}><img src={logo} alt="logo Furniro" /></Link>
       </div>
       <div>
-        <ul className='flex gap-[75px]'>
+        <ul className='flex my-2 justify-center md:flex gap-6 lg:gap-9 xl:gap-[75px]'>
           <li className='font-poppins text-base font-medium'><Link to={"/"}>Home</Link></li>
           <li className='font-poppins text-base font-medium'><Link to={"/shop"}>Shop</Link></li>
           <li className='font-poppins text-base font-medium'><Link to={"/about"}>About</Link></li>
           <li className='font-poppins text-base font-medium'><Link to={"/contact"}>Contact</Link></li>
         </ul>
       </div>
-      <div className='flex gap-8 items-center relative'>
+      <div className='flex justify-center xl:flex gap-8 items-center relative'>
         <div className='relative cursor-pointer font-poppins' onClick={handleUserClick}>
           <FaRegUser size={24} />
         </div>
