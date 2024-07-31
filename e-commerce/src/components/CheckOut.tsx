@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebaseConfig";
 
 const CheckOut = () => {
-  const { cartItems } = useCart();
+  const { cartItems, clearCart } = useCart();
   const [selectedPayment, setSelectedPayment] = useState("");
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -70,9 +70,10 @@ const CheckOut = () => {
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-    } else {
-      
+    } else {      
       console.log("Form submitted successfully");
+      clearCart();
+      navigate("/thankyou");
     }
   };
 
@@ -89,7 +90,7 @@ const CheckOut = () => {
       <div className="container mx-auto py-10 flex flex-col justify-between md:flex-row font-poppins">
         <div>
           <h2 className="text-3xl font-semibold mb-6">Billing details</h2>
-          <form className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
+          <form id="checkout-form" className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
             <div className="flex space-x-4 justify-between">
               <div className="w-[50%] h-[75px] mb-5">
                 <p className="mb-5">First Name</p>
@@ -135,7 +136,7 @@ const CheckOut = () => {
           <ul className="space-y-4">
             {cartItems.map((item) => (
               <li key={item.id} className="flex justify-between">
-                <span className="text-secondary">{item.title}</span>
+                <span className="text-secondary">{item.title} | {item.size}</span>
                 <span className="font-light">R$ {item.price.toFixed(2)}</span>
               </li>
             ))}
@@ -184,11 +185,10 @@ const CheckOut = () => {
               </Link>
             </p>
             <div className="flex justify-center">
-              <button type="submit" className="w-[318px] h-[64px] mt-6 border border-black rounded-2xl text-xl">
+              <button type="button" onClick={() => document.getElementById('checkout-form').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }))} className="w-[318px] h-[64px] mt-6 border border-black rounded-2xl text-xl">
               Place order
               </button>
-            </div>
-            
+            </div>            
           </div>
         </div>
       </div>

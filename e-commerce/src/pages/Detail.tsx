@@ -6,16 +6,17 @@ import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import SubHeader from '../components/SubHeader';
 import RelatedDetails from '../components/RelatedDetails';
-import { useCart } from '../context/CartContext'; // Import the Cart context
+import { useCart } from '../context/CartContext'; 
 
 const Detail = () => {
-  const { updateCart } = useCart(); // Use the Cart context
+  const { updateCart } = useCart(); 
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,6 +34,10 @@ const Detail = () => {
   }, [id]);
 
   const handleAddToCart = () => {
+    if (!selectedSize || !selectedColor) {
+      setError('Please select a size and a color.');
+      return;
+    }
     updateCart({
       id: product.id,
       title: product.title,
@@ -42,6 +47,7 @@ const Detail = () => {
       size: selectedSize,
       color: selectedColor,
     });
+    setError('');
   };
 
   if (!product) {
@@ -57,14 +63,14 @@ const Detail = () => {
             {product.images.map((img, index) => (
               <img
                 key={index}
-                src={`/${img}`}
+                src={`${img}`}
                 alt={`${product.title} ${index}`}
                 className='cursor-pointer w-[76px] h-[80px] rounded-[10px]'
                 onClick={() => setSelectedImage(img)}
               />
             ))}
           </div>
-          <img src={`/${selectedImage}`} alt={product.title} className='w-[481px] h-[500px] rounded-[10px]' />
+          <img src={`${selectedImage}`} alt={product.title} className='w-[481px] h-[500px] rounded-[10px]' />
         </div>
         <div>
           <h2 className='text-[42px] font-normal'>{product.title}</h2>
@@ -123,6 +129,7 @@ const Detail = () => {
               Add To Cart
             </button>
           </div>
+          {error && <p className="text-red-500">{error}</p>}
           <div className='border-t flex flex-col gap-[12px] text-base mb-[67px]'>
             <p className='mt-[41px] text-secondary'>SKU: {product.sku}</p>
             <p className='text-secondary'>Category: {product.category}</p>
@@ -146,8 +153,8 @@ const Detail = () => {
           <p className='mb-9'>{product.additionalinfo}</p>
         </div>
         <div className='flex items-center justify-center gap-[29px]'>
-          <img src={`/${product.image}`} alt={product.title} />
-          <img src={`/${product.image}`} alt={product.title} />
+          <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]' />
+          <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]'/>
         </div>
         <div>
           <RelatedDetails category={product.category} />

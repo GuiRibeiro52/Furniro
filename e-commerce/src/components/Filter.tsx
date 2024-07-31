@@ -28,13 +28,13 @@ const Filter = ({ onFilterChange, onItemsPerPageChange, onSortChange, totalResul
               <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-300 shadow-md z-50">
                 <ul>
                   <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('All')}>All</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('sofa')}>Sofa</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('desk')}>Desk</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('table')}>Table</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('chair')}>Chair</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('living home')}>Living Home</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('bedroom')}>Bedroom</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('room')}>Room</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('cabinet')}>Armários</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('chair')}>Cadeiras</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('desk')}>Escrivaninhas</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('closet')}>Guarda Roupas</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('table')}>Mesa de Jantar</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('rack')}>Racks</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('sofa')}>Sofás</li>
                 </ul>
               </div>
             )}

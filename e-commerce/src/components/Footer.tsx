@@ -3,8 +3,18 @@ import { FaInstagram } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
 import { FaLinkedinIn } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
+
+
   return (
     <footer className="bg-[rgba(255,255,255,0.17)] pt-12 pl-[100px] font-poppins pr-[200px] border-t-2">
       <div className="flex justify-between">
@@ -39,8 +49,8 @@ const Footer = () => {
           <ul className="flex flex-col gap-[46px] font-medium">
             <li><Link to={'/'}>Home</Link></li>
             <li><Link to={'/shop'}>Shop</Link></li>
-            <li><Link to={'/about'}>About</Link></li>
-            <li><Link to={'/contact'}>Contact</Link></li>
+            <li><button onClick={() => handleNavigation('/about')} className="text-left">About</button></li>
+            <li><button onClick={() => handleNavigation('/contact')} className="text-left">Contact</button></li>
           </ul>
         </div>
 

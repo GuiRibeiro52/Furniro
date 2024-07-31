@@ -32,7 +32,7 @@ const RelatedDetails = ({ category }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {visibleProducts.map(product => (
           <div key={product.id} className="w-[285px] h-[446px] bg-quartiary relative group">
-            <img src={`/${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
+            <img src={`${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
             <h3 className="text-2xl font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
             <p className="text-base text-tertiary ml-4 mb-2">{product.text}</p>
             <p className="font-semibold text-xl ml-4">R$ {product.price}</p>
