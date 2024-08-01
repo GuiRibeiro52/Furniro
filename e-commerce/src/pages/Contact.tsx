@@ -28,7 +28,7 @@ const Contact = () => {
   return (
     <div>
       <BannerTop pageName="Contact" />
-      <div className="font-poppins container mx-auto mb-[63px]">
+      <div className="font-poppins container mx-auto mb-[63px] px-5">
         <h2 className="text-4xl font-semibold mb-4 text-center mt-[98px]">Get In Touch With Us</h2>
         <p className="text-center text-base mb-[133px] text-secondary font-normal flex flex-col">
           For More Information About Our Product & Services, Please Feel Free To Drop Us<span>An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</span> 
