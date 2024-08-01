@@ -6,8 +6,8 @@ import shipping from '../assets/shipping.png'
 
 const BannerBot = () => {
   return (
-    <div className="w-full h-[270px] bg-botton px-14 py-24 font-poppins">
-         <div className="flex justify-between">
+    <div className="w-full lg:h-[270px] bg-botton md:py-24 lg:py-24 lg:px-8 xl:px-10 xl:py-24 font-poppins">
+         <div className="grid grid-cols-1 md:grid md:grid-cols-2 gap-10  px-10 py-10 lg:flex lg:flex-row lg:justify-between">
             <div className="flex gap-[10px]">            
                 <img src={trophy} alt="trophy" className="w-14 h-14"/>
                 <div>

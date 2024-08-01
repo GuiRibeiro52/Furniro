@@ -5,14 +5,18 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 
-//páginas
+// páginas
 import Home from './pages/Home.tsx'
 import About from './pages/About.tsx'
 import Contact from './pages/Contact.tsx'
 import Shop from './pages/Shop.tsx'
 import Cart from './pages/Cart.tsx'
-import Checkout from './pages/Checkout.tsx'
-import Detail from './components/Detail.tsx'
+import CheckOut from './components/CheckOut.tsx'
+import Detail from './pages/Detail.tsx'
+import Login from './pages/Login.tsx'
+import Register from './pages/Register.tsx'
+import ProtectedRoute from './routes/ProtectedRoute';
+import ThankYou from './pages/ThankYou.tsx'
 
 const router = createBrowserRouter([
   {
@@ -40,12 +44,32 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout />
+        element: (
+          <ProtectedRoute>
+            <CheckOut/>
+          </ProtectedRoute>
+        )
       },
       {
         path: "/product/:id",
         element: <Detail />
       },
+      {
+        path: "/login",
+        element: <Login />
+      },
+      {
+        path: "/register",
+        element: <Register />
+      },
+      {
+        path: "/thankyou",
+        element: (
+          <ProtectedRoute>
+            <ThankYou />
+          </ProtectedRoute>
+        )
+      }
     ]
   }
 ])
