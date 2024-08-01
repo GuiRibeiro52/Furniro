@@ -92,9 +92,9 @@ const Shop = () => {
         itemsPerPage={itemsPerPage}
       />
       <div className="container mx-auto py-10 font-poppins">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 px-16 sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 gap-8 xl:px-5">
           {getPaginatedProducts().map(product => (
-            <div key={product.id} className="w-[285px] h-[446px] bg-quartiary relative group">
+            <div key={product.id} className="w-[285px] h-[446px] bg-quartiary relative">
               <img src={`${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
               <h3 className="text-2xl font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
               <p className="text-base text-tertiary ml-4 mb-2">{product.text}</p>
@@ -111,11 +111,11 @@ const Shop = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-11 mb-11 gap-[38px]">
+        <div className="grid grid-cols-4 gap-2 px-3 2xl:flex 2xl:justify-center 2xl:mt-11 2xl:mb-11 2xl:gap-[38px]">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className={`mx-1 px-3 py-2 w-[100px] h-[60px] rounded-[10px] ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-subheader'}`}
+            className={`mx-1 px-3 py-2 w-[90px] h-[60px] rounded-[10px] ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-subheader'}`}
           >
             Prev
           </button>
@@ -131,7 +131,7 @@ const Shop = () => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage >= Math.ceil(filteredProducts.length / itemsPerPage)}
-            className={`mx-1 px-3 py-2 w-[100px] h-[60px] rounded-[10px] ${currentPage >= Math.ceil(filteredProducts.length / itemsPerPage) ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-subheader'}`}
+            className={`mx-1 px-3 py-2 w-[90px] h-[60px] rounded-[10px] ${currentPage >= Math.ceil(filteredProducts.length / itemsPerPage) ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-subheader'}`}
           >
             Next
           </button>

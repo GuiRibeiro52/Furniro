@@ -16,8 +16,8 @@ const Filter = ({ onFilterChange, onItemsPerPageChange, onSortChange, totalResul
   };
 
   return (
-    <div className="w-full h-[100px] font-poppins bg-subheader">
-      <div className="flex gap-[23px] container mx-auto">
+    <div className="w-full h-[150px] mt-[-35px] font-poppins bg-subheader sm:h-[120px] sm:mt-0 px-5">
+      <div className="sm:flex sm:gap-[23px] sm:container sm:mx-auto">
         <div className='flex items-center mt-9 gap-[23px]'>
           <div className='relative'>
             <div className='flex gap-[12px] cursor-pointer' onClick={handleFilterClick}>
