@@ -57,9 +57,9 @@ const Detail = () => {
   return (
     <div>
       <SubHeader product={product} />
-      <div className='container flex mx-auto font-poppins justify-center mt-[35px]'>
-        <div className='flex justify-center gap-[29px] mr-[82px]'>
-          <div className='flex flex-col space-y-4'>
+      <div className='container px-5 mx-auto font-poppins justify-center mt-[35px] xl:flex'>
+        <div className='flex flex-col-reverse justify-center gap-[29px] 2xl:flex-row'>
+          <div className='flex justify-center pb-5 2xl:flex-col 2xl:space-y-4'>
             {product.images.map((img, index) => (
               <img
                 key={index}
@@ -70,9 +70,9 @@ const Detail = () => {
               />
             ))}
           </div>
-          <img src={`${selectedImage}`} alt={product.title} className='w-[481px] h-[500px] rounded-[10px]' />
+          <img src={`${selectedImage}`} alt={product.title} className='2xl:w-[481px] 2xl:h-[500px] rounded-[10px]' />
         </div>
-        <div>
+        <div className='mr-5'>
           <h2 className='text-[42px] font-normal'>{product.title}</h2>
           <p className='text-2xl font-medium text-secondary mb-[15px]'>R$ {product.price.toFixed(2)}</p>
           <div className='flex items-center space-x-1 mt-2'>
@@ -91,7 +91,7 @@ const Detail = () => {
               {product.sizes.map((size) => (
                 <button
                   key={size}
-                  className={`w-[30px] h-[30px] flex items-center justify-center rounded text-[13px] bg-subheader ${selectedSize === size ? 'bg-[#b88e2f] text-white' : 'border-gray-300'}`}
+                  className={`w-[30px] h-[30px] flex items-center justify-center rounded text-[13px] border ${selectedSize === size ? 'bg-[#b88e2f] text-white' : 'border-gray-300'}`}
                   onClick={() => setSelectedSize(size)}
                 >
                   {size}
@@ -143,16 +143,16 @@ const Detail = () => {
           </div>
         </div>
       </div>
-      <div className='container mx-auto py-10 font-poppins flex flex-col justify-center border-t'>
+      <div className='container px-5 grid 2xl:mx-auto 2xl:py-10 font-poppins 2xl:flex 2xl:flex-col 2xl:justify-center border-t'>
         <div className='flex items-center justify-center gap-[130px] text-2xl mb-9'>
           <h3 className='font-medium'>Description</h3>
           <h3 className='font-normal text-secondary'>Additional Information</h3>
         </div>
         <div className='text-base text-secondary'>
-          <p className='mb-8'>{product.description}</p>
-          <p className='mb-9'>{product.additionalinfo}</p>
+          <p className='mb-8 text-justify'>{product.description}</p>
+          <p className='mb-9 text-justify'>{product.additionalinfo}</p>
         </div>
-        <div className='flex items-center justify-center gap-[29px]'>
+        <div className='xl:flex 2xl:flex 2xl:items-center 2xl:justify-center gap-[29px]'>
           <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]' />
           <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]'/>
         </div>
