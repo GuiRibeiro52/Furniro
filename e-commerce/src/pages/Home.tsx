@@ -47,9 +47,14 @@ const Home = () => {
         </div>
       </div>
 
-      <OurProducts />
+      <div className="flex justify-center">
+        <OurProducts />  
+      </div>
 
-      <Carousel />     
+      <div>
+        <Carousel /> 
+      </div>      
+          
 
       <div className="flex flex-col items-center ">
         <h3 className="text-[#616161] font-semibold text-xl">Share your setup with</h3>
