@@ -87,7 +87,7 @@ const CheckOut = () => {
   return (
     <div>
       <BannerTop pageName="CheckOut" />
-      <div className="container mx-auto py-10 flex flex-col justify-between md:flex-row font-poppins">
+      <div className="container mx-auto py-10 px-5 flex flex-col justify-between lg:flex-row  font-poppins">
         <div>
           <h2 className="text-3xl font-semibold mb-6">Billing details</h2>
           <form id="checkout-form" className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
@@ -128,7 +128,7 @@ const CheckOut = () => {
             <textarea placeholder="Additional information" className="px-3 py-2 border rounded-xl" value={additionalInfo} onChange={(e) => setAdditionalInfo(e.target.value)}></textarea>
           </form>
         </div>
-        <div className="w-[608px] p-4">
+        <div className="w-[608px] p-4 flex justify-center flex-col">
           <div className="flex text-2xl font-medium mb-6 justify-between">
             <h2>Product</h2>
             <h2>SubTotal</h2>

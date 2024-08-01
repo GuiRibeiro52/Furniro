@@ -16,9 +16,9 @@ const Footer = () => {
 
 
   return (
-    <footer className="bg-[rgba(255,255,255,0.17)] pt-12 pl-[100px] font-poppins pr-[200px] border-t-2">
-      <div className="flex justify-between">
-        <div>
+    <footer className="bg-[rgba(255,255,255,0.17)] px-6 md:px-[25px] lg:px-[50px] xl:px-[100px] pt-12 2xl:pt-12 2xl:px-[200px] font-poppins border-t-2">
+      <div className="lg:flex lg:justify-between">
+        <div className="flex md:flex items-center justify-around lg:flex-col lg:items-start">
           <div className="mb-[55px]">
             <h2 className="font-bold text-2xl mb-[50px]">
               Furniro.
@@ -44,26 +44,29 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="text-base">
-          <h3 className="mb-[55px] text-secondary">Links</h3>
-          <ul className="flex flex-col gap-[46px] font-medium">
-            <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/shop'}>Shop</Link></li>
-            <li><button onClick={() => handleNavigation('/about')} className="text-left">About</button></li>
-            <li><button onClick={() => handleNavigation('/contact')} className="text-left">Contact</button></li>
-          </ul>
-        </div>
+        <div className="flex md:flex justify-around lg:gap-[200px]">
+          <div className="text-base">
+            <h3 className="mb-[55px] text-secondary">Links</h3>
+            <ul className="flex flex-col gap-[46px] font-medium">
+              <li><Link to={'/'}>Home</Link></li>
+              <li><Link to={'/shop'}>Shop</Link></li>
+              <li><button onClick={() => handleNavigation('/about')} className="text-left">About</button></li>
+              <li><button onClick={() => handleNavigation('/contact')} className="text-left">Contact</button></li>
+            </ul>
+          </div>
 
-        <div className="text-base">
-          <h3 className="mb-[55px] text-secondary">Help</h3>
-          <ul className="flex flex-col gap-[46px] font-medium">
-            <li><Link to={'https://google.com'}>Payment Option</Link></li>
-            <li><Link to={'https://google.com'}>Return</Link></li>
-            <li><Link to={'https://google.com'}>Privacy Policies</Link></li>
-          </ul>
+          <div className="text-base">
+            <h3 className="mb-[55px] text-secondary">Help</h3>
+            <ul className="flex flex-col gap-[46px] font-medium">
+              <li><Link to={'https://google.com'}>Payment Option</Link></li>
+              <li><Link to={'https://google.com'}>Return</Link></li>
+              <li><Link to={'https://google.com'}>Privacy Policies</Link></li>
+            </ul>
+          </div>
         </div>
+        
 
-        <div className="text-base">
+        <div className="text-base mt-10 md:mt-10 flex flex-col items-center">
           <h3 className="mb-[55px] text-secondary">Newsletter</h3>
           <div className="flex leading-5 gap-5">
             <input 
@@ -76,7 +79,7 @@ const Footer = () => {
           </div>     
         </div> 
       </div>
-      <div className="border-t-2 mt-12">
+      <div className="border-t-2 mt-12 ">
         <h2 className="mt-9 mb-9 [text-base font-normal">2023 furino. All rights reserved</h2>
       </div>
 

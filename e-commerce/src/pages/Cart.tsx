@@ -29,8 +29,9 @@ const Cart = () => {
   return (
     <div>
       <BannerTop pageName="Cart"/>
-      <div className="container mx-auto py-10 font-poppins flex justify-between">
-        <table className="w-[817px] h-[55px] text-left">
+      <div className="container mx-auto py-10 px-3 font-poppins xl:flex xl:justify-between">
+        <div className='flex justify-center mb-10'>
+          <table className="md:w-[817px] h-[55px] text-left">
           <thead className='bg-subheader'>
             <tr>
               <th></th>
@@ -45,7 +46,7 @@ const Cart = () => {
             {cartItems.map((item, index) => (
               <tr key={item.id} >
                 <td className="py-4 flex items-center">
-                  <img src={`${item.image}`} alt={item.title} className="w-20 h-20 object-cover rounded mr-4"/>                
+                  <img src={`${item.image}`} alt={item.title} className="hidden sm:block w-20 h-20 object-cover rounded mr-4"/>                
                 </td>
                 <td>
                   <span className='text-secondary'>{item.title}</span><br/>
@@ -84,7 +85,9 @@ const Cart = () => {
             ))}
           </tbody>
         </table>
-        <div className="flex">
+        </div>
+        
+        <div className="flex justify-center">
           <div className=" bg-subheader p-6 rounded  w-[393px] h-[393px]">
             <div className='flex justify-center font-semibold mb-14'>
               <h2 className="text-[32px]  mb-4">Cart Totals</h2>
