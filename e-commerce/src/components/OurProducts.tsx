@@ -33,7 +33,7 @@ const OurProducts = () => {
   };
 
   return (
-    <div className="font-poppins container mx-auto py-10">
+    <div className="font-poppins container flex flex-col items-center sm:flex sm:flex-col sm:items-center md:px-6 lg:py-10 lg:px-6">
       <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {visibleProducts.map(product => (
