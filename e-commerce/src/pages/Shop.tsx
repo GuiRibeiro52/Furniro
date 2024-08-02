@@ -21,7 +21,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/posts');
+        const response = await axios.get('http://18.116.69.3:3000/posts');
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (error) {

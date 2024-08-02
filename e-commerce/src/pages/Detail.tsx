@@ -21,7 +21,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/posts/${id}`);
+        const response = await axios.get(`http://18.116.69.3:3000/posts/${id}`);
         setProduct(response.data);
         setSelectedImage(response.data.image);
       } catch (error) {

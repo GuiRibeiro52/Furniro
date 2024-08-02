@@ -10,7 +10,7 @@ const RelatedDetails = ({ category }) => {
   useEffect(() => {
     const fetchRelatedProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/posts');
+        const response = await axios.get('http://18.116.69.3:3000/posts');
         const filteredProducts = response.data.filter(product => product.category === category);
         setRelatedProducts(filteredProducts);
         setVisibleProducts(filteredProducts.slice(0, productsToShow));
