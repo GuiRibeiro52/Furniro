@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import './index.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { CartProvider } from './context/CartContext'; // Import CartProvider
+import { CartProvider } from './context/CartContext';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -36,14 +36,18 @@ function App() {
     setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
-  const isAuthPage = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/thankyou'
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/thankyou';
 
   return (
-    <CartProvider value={{ cartItems, updateCart, removeFromCart }}>
+    <CartProvider>
       <div className='w-auto'>
-        {!isAuthPage && <Header cartItems={cartItems} removeFromCart={removeFromCart} />}
+        {!isAuthPage && <Header />}
         <div>
-          <Outlet context={{ cartItems, updateCart, removeFromCart }} />
+          <Outlet context={{ cartItems, updateCart, removeFromCart, clearCart }} />
         </div>
         {!isAuthPage && <Footer />}
       </div>

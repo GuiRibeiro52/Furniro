@@ -45,7 +45,7 @@ const Carousel = () => {
     slidesToScroll: 1,
     centerMode: false,
     centerPadding: '0px',
-    beforeChange: (current, next) => setCenterSlideIndex(next),
+    beforeChange: (_, next) => setCenterSlideIndex(next),
   };
 
   const [centerSlideIndex, setCenterSlideIndex] = useState(0);

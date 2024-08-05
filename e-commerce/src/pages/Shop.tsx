@@ -1,5 +1,4 @@
-// Shop.tsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import BannerBot from "../components/BannerBot";
@@ -10,10 +9,19 @@ import compare from '../assets/compare.png';
 import Heart from '../assets/Heart.png';
 import Filter from '../components/Filter';
 
+interface Product {
+  id: number;
+  image: string;
+  title: string;
+  text: string;
+  price: number;
+  category: string;
+}
+
 const Shop = () => {
   const location = useLocation();
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(16);
   const [sortOption, setSortOption] = useState('Default');
@@ -21,7 +29,7 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/posts');
+        const response = await axios.get('http://18.116.69.3:3000/posts');
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (error) {
@@ -40,15 +48,15 @@ const Shop = () => {
     }
   }, [location.state, products]);
 
-  useEffect(() => {
-    let sortedProducts = [...filteredProducts];
+  const sortedProducts = useMemo(() => {
+    const sorted = [...filteredProducts];
     if (sortOption === 'A to Z') {
-      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sortOption === 'Z to A') {
-      sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
+      sorted.sort((a, b) => b.title.localeCompare(a.title));
     }
-    setFilteredProducts(sortedProducts);
-  }, [sortOption]);
+    return sorted;
+  }, [filteredProducts, sortOption]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -57,15 +65,15 @@ const Shop = () => {
   const getPaginatedProducts = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return filteredProducts.slice(startIndex, endIndex);
+    return sortedProducts.slice(startIndex, endIndex);
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
   };
 
-  const handleFilterChange = (category) => {
+  const handleFilterChange = (category: string) => {
     if (category === 'All') {
       setFilteredProducts(products);
     } else {
@@ -73,11 +81,11 @@ const Shop = () => {
     }
   };
 
-  const handleItemsPerPageChange = (value) => {
+  const handleItemsPerPageChange = (value: string) => {
     setItemsPerPage(parseInt(value));
   };
 
-  const handleSortChange = (value) => {
+  const handleSortChange = (value: string) => {
     setSortOption(value);
   };
 
@@ -94,7 +102,7 @@ const Shop = () => {
       <div className="container mx-auto py-10 font-poppins">
         <div className="grid grid-cols-1 px-16 sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 gap-8 xl:px-5">
           {getPaginatedProducts().map(product => (
-            <div key={product.id} className="w-[285px] h-[446px] bg-quartiary relative">
+            <div key={product.id} className="w-[285px] h-[446px] bg-quartiary group relative">
               <img src={`${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
               <h3 className="text-2xl font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
               <p className="text-base text-tertiary ml-4 mb-2">{product.text}</p>
