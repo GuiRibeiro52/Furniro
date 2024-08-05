@@ -1,4 +1,3 @@
-
 import BannerBot from "../components/BannerBot";
 import BannerTop from "../components/BannerTop";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +5,18 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebaseConfig";
+
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  zipCode?: string;
+  country?: string;
+  streetAddress?: string;
+  city?: string;
+  province?: string;
+  email?: string;
+  selectedPayment?: string;
+}
 
 const CheckOut = () => {
   const { cartItems, clearCart } = useCart();
@@ -24,9 +35,9 @@ const CheckOut = () => {
   const [addonAddress, setAddonAddress] = useState('');
   const [email, setEmail] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
 
-  const handleZipCodeChange = async (event) => {
+  const handleZipCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const zip = event.target.value;
     setZipCode(zip);
 
@@ -50,13 +61,13 @@ const CheckOut = () => {
     }
   };
 
-  const handlePaymentChange = (event) => {
+  const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedPayment(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const errors = {};
+    const errors: FormErrors = {};
 
     if (!firstName) errors.firstName = "First Name is required";
     if (!lastName) errors.lastName = "Last Name is required";
@@ -87,7 +98,7 @@ const CheckOut = () => {
   return (
     <div>
       <BannerTop pageName="CheckOut" />
-      <div className="container mx-auto py-10 px-5 flex flex-col justify-between lg:flex-row  font-poppins">
+      <div className="container mx-auto py-10 px-5 flex flex-col justify-between lg:flex-row font-poppins">
         <div>
           <h2 className="text-3xl font-semibold mb-6">Billing details</h2>
           <form id="checkout-form" className="space-y-4 flex flex-col" onSubmit={handleSubmit}>
