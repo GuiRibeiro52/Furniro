@@ -27,9 +27,45 @@ As seguintes tecnologias foram usadas na construção do projeto:
 
 # Instruções de uso
 
-## Pré-requisitos
+## Pré-requisitos:
 
 - Navegador web (Chrome, Firefox, Safari, etc.)
 - Git
   
-## Clone o repositório
+## Clone o repositório:
+
+```
+git clone https://github.com/GuiRibeiro52/Desafio-3.git
+```
+## Navegue até o diretório raíz do projeto:
+```
+cd e-commerce
+```
+## Instale as dependências do projeto:
+```
+npm install
+```
+## Rode o comando para abrir servidor de desenvolvimento:
+```
+npm run dev
+```
+
+
+# Contribuição
+Contribuições são sempre bem-vindas!
+
+- Faça o fork do projeto
+
+- Crie uma branch para sua feature:
+  ```
+  git checkout -b feature/fooBar
+  ```
+- Faça o commit das suas mudanças:
+  ```
+  git commit -am 'Add some fooBar
+  ```
+- Realize o push para o branch:
+  ```
+  git push origin feature/fooBar
+  ```
+- Abra o Pull Request
