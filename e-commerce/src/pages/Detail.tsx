@@ -58,8 +58,8 @@ const Detail = () => {
     <div>
       <SubHeader product={product} />
       <div className='container px-5 mx-auto font-poppins justify-center mt-[35px] xl:flex'>
-        <div className='flex flex-col-reverse justify-center gap-[29px] 2xl:flex-row'>
-          <div className='flex justify-center pb-5 2xl:flex-col 2xl:space-y-4'>
+        <div className='flex flex-col-reverse justify-center gap-[30px] 2xl:flex-row m-10'>
+          <div className='flex  pb-5 2xl:flex-col 2xl:space-y-4'>
             {product.images.map((img, index) => (
               <img
                 key={index}

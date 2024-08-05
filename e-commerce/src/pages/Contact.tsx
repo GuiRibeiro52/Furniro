@@ -1,11 +1,19 @@
 import BannerBot from "../components/BannerBot";
 import BannerTop from "../components/BannerTop";
-import { useForm } from 'react-hook-form';
+import { useForm, FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 import axios from 'axios';
 
 import clock from '../assets/clock.png';
 import phone from '../assets/phone.png';
 import pin from '../assets/pin.png';
+
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject?: string;
+  message?: string;
+}
 
 const Contact = () => {
   const {
@@ -13,16 +21,24 @@ const Contact = () => {
     handleSubmit,
     formState: { errors },
     reset
-  } = useForm();
+  } = useForm<ContactFormData>();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: ContactFormData) => {
     try {
-      await axios.post('http://localhost:3000/contacts', data);
+      await axios.post('http://18.116.69.3:3000/contacts', data);
       alert('Contact information submitted successfully');
       reset();
     } catch (error) {
       console.error('There was an error submitting the form', error);
     }
+  };
+
+  
+  const renderError = (error: FieldError | Merge<FieldError, FieldErrorsImpl<ContactFormData>> | undefined) => {
+    if (error && 'message' in error) {
+      return <p className="text-red-600">{error.message as string}</p>;
+    }
+    return null;
   };
 
   return (
@@ -31,7 +47,8 @@ const Contact = () => {
       <div className="font-poppins container mx-auto mb-[63px] px-5">
         <h2 className="text-4xl font-semibold mb-4 text-center mt-[98px]">Get In Touch With Us</h2>
         <p className="text-center text-base mb-[133px] text-secondary font-normal flex flex-col">
-          For More Information About Our Product & Services, Please Feel Free To Drop Us<span>An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</span> 
+          For More Information About Our Product & Services, Please Feel Free To Drop Us
+          <span>An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</span> 
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1058px] mx-auto">
           <div className="space-y-6">
@@ -74,7 +91,7 @@ const Contact = () => {
                 className="w-full border px-3 py-2 rounded-[10px]"
                 placeholder="Enter your Name"
               />
-              {errors.name && <p className="text-red-600">{errors.name.message}</p>}
+              {renderError(errors.name)}
             </div>
             <div>
               <label className="block text-base font-medium mb-5">Email Address</label>
@@ -90,7 +107,7 @@ const Contact = () => {
                 className="w-full border px-3 py-2 rounded-[10px]"
                 placeholder="email@email.com"
               />
-              {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+              {renderError(errors.email)}
             </div>
             <div>
               <label className="block text-base font-medium mb-5">Subject</label>

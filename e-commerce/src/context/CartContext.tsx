@@ -1,9 +1,33 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
-const CartContext = createContext();
+interface CartItem {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+  size: string;
+  color: string;
+  image: string;
+}
 
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(() => {
+interface CartContextType {
+  cartItems: CartItem[];
+  updateCart: (newItem: CartItem) => void;
+  removeFromCart: (itemId: string) => void;
+  clearCart: () => void;
+}
+
+const defaultCartContext: CartContextType = {
+  cartItems: [],
+  updateCart: () => {},
+  removeFromCart: () => {},
+  clearCart: () => {},
+};
+
+const CartContext = createContext<CartContextType>(defaultCartContext);
+
+export const CartProvider = ({ children }: { children: ReactNode }) => {
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     const storedCartItems = localStorage.getItem('cartItems');
     return storedCartItems ? JSON.parse(storedCartItems) : [];
   });
@@ -12,7 +36,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const updateCart = (newItem) => {
+  const updateCart = (newItem: CartItem) => {
     setCartItems((prevItems) => {
       const itemIndex = prevItems.findIndex(item => item.id === newItem.id);
       if (itemIndex > -1) {
@@ -24,7 +48,7 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = (itemId: string) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
