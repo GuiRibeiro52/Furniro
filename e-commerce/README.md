@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+![Compass Logo](src/assets/logo_compass.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Visão Geral
+Furniro é uma aplicação desenvolvida para oferecer vendas de móveis online. A aplicação apresenta uma interface amigável, com recursos interativos para melhorar a experiência do usuário.
 
-Currently, two official plugins are available:
+![Aplicação Furniro](src/assets/screenshot_furniro.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tecnologias
+O projeto foi desenvolvido com ReactTS + Vite e Tailwindcss, utilizada a api [Firebase](https://firebase.google.com/docs/auth?hl=pt-br) para autenticação do usuário, [ViaCep](https://viacep.com.br/) para preencher campos dos correios, as imagens dos produtos estão hospedadas em uma [bucket AWS](https://us-east-2.console.aws.amazon.com/s3/buckets/furniro001?region=us-east-2&bucketType=general&tab=objects) e o projeto está rodando em uma instancia [EC2 AWS](http://18.116.69.3/), foi usado tecnologias modernas para proporcionar uma experiência rica e interativa aos usuários.
 
-## Expanding the ESLint configuration
+As seguintes tecnologias foram usadas na construção do projeto:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind](https://tailwindcss.com/)
 
-- Configure the top-level `parserOptions` property like this:
+# Funcionalidades
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- [x] Login usuário
+- [x] Carousel de Móveis
+- [x] Carrinho de compras
+- [x] Checkout
+- [x] Filtros
+- [x] Ordenação
+- [x] Quantidade de itens por página
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Instruções de uso
+
+## Pré-requisitos
+
+- Navegador web (Chrome, Firefox, Safari, etc.)
+- Git
+  
+## Clone o repositório
