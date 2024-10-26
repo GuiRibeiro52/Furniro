@@ -55,11 +55,11 @@ const Header = () => {
   return (
     <header className='md:flex xl:flex items-center justify-between ml-12 mr-24 mt-8 mb-8'>
       <div className='flex justify-center'>
-        <Link to={'/'}><img src={logo} alt="logo Furniro" /></Link>
+        <Link to={'/Furniro'}><img src={logo} alt="logo Furniro" /></Link>
       </div>
       <div>
         <ul className='flex my-2 justify-center md:flex gap-6 lg:gap-9 xl:gap-[75px]'>
-          <li className='font-poppins text-base font-medium'><Link to={"/"}>Home</Link></li>
+          <li className='font-poppins text-base font-medium'><Link to={"/Furniro"}>Home</Link></li>
           <li className='font-poppins text-base font-medium'><Link to={"/shop"}>Shop</Link></li>
           <li className='font-poppins text-base font-medium'><Link to={"/about"}>About</Link></li>
           <li className='font-poppins text-base font-medium'><Link to={"/contact"}>Contact</Link></li>

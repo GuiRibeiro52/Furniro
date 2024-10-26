@@ -48,7 +48,7 @@ const Footer = () => {
           <div className="text-base">
             <h3 className="mb-[55px] text-secondary">Links</h3>
             <ul className="flex flex-col gap-[46px] font-medium">
-              <li><Link to={'/'}>Home</Link></li>
+              <li><Link to={'/Furniro'}>Home</Link></li>
               <li><Link to={'/shop'}>Shop</Link></li>
               <li><button onClick={() => handleNavigation('/about')} className="text-left">About</button></li>
               <li><button onClick={() => handleNavigation('/contact')} className="text-left">Contact</button></li>
