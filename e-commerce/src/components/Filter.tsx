@@ -28,13 +28,12 @@ const Filter = ({ onFilterChange, onItemsPerPageChange, onSortChange, totalResul
               <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-300 shadow-md z-50">
                 <ul>
                   <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('All')}>All</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('cabinet')}>Armários</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('chair')}>Cadeiras</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('desk')}>Escrivaninhas</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('closet')}>Guarda Roupas</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('table')}>Mesa de Jantar</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('rack')}>Racks</li>
-                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('sofa')}>Sofás</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('Armarios')}>Armários</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('Cadeiras')}>Cadeiras</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('Escrivaninhas')}>Escrivaninhas</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('Mesas')}>Mesas</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('Racks')}>Racks</li>
+                  <li className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleFilterChange('Sofás')}>Sofás</li>
                 </ul>
               </div>
             )}

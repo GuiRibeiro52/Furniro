@@ -29,9 +29,24 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://18.116.69.3:3000/posts');
-        setProducts(response.data);
-        setFilteredProducts(response.data);
+        const response = await axios.get('https://raw.githubusercontent.com/dbreskovit/json-api-products-w12/refs/heads/main/_database.json');
+        const adaptedProducts = response.data.products.map((product: {
+          id: number,
+          images: { mainImage: string },
+          title: string,
+          description: { short: string },
+          salePrice: number,
+          category: string
+        }) => ({
+          id: product.id,
+          image: product.images.mainImage,
+          title: product.title,
+          text: product.description.short,
+          price: product.salePrice,
+          category: product.category
+        }));
+        setProducts(adaptedProducts);
+        setFilteredProducts(adaptedProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -102,10 +117,10 @@ const Shop = () => {
       <div className="container mx-auto py-10 font-poppins">
         <div className="grid grid-cols-1 px-16 sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 gap-8 xl:px-5">
           {getPaginatedProducts().map(product => (
-            <div key={product.id} className="w-[285px] h-[446px] bg-quartiary group relative">
-              <img src={`${product.image}`} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
-              <h3 className="text-2xl font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
-              <p className="text-base text-tertiary ml-4 mb-2">{product.text}</p>
+            <div key={product.id} className="w-[285px] h-[500px] bg-quartiary group relative">
+              <img src={`${product.image}`} alt={product.title} className="w-full h-[200px] object-cover" />
+              <h3 className="text-lg font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
+              <p className="text-sm text-tertiary mx-4 mb-2 text-justify">{product.text}</p>
               <p className="font-semibold text-xl ml-4">R$ {product.price}</p>
 
               <div className="absolute inset-0 bg-focused bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">

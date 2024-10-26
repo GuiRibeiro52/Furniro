@@ -21,7 +21,7 @@ const Home = () => {
         <img src={background} alt="room" className="lg:w-full lg:h-auto"/>
         <div className="w-full p-6 lg:absolute lg:top-[25%] lg:right-14 lg:w-[643px] lg:h-[443px] bg-[#fff3e3] lg:px-10 lg:py-14 lg:rounded-xl">
           <h3 className="font-semibold text-headers">New Arrival</h3>
-          <h2 className="font-bold text-[52px] text-button max-w-[400px]">Discrover Our New Collection</h2>
+          <h2 className="font-bold text-[52px] text-button max-w-[400px]">Discover Our New Collection</h2>
           <p className="font-medium text-lg mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
           <button className="w-[222px] h-[74px] bg-button text-white"><Link to='/shop'>BUY NOW</Link></button>
         </div>
