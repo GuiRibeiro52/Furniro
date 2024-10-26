@@ -21,9 +21,15 @@ const Detail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://18.116.69.3:3000/posts/${id}`);
-        setProduct(response.data);
-        setSelectedImage(response.data.image);
+        const response = await axios.get('https://raw.githubusercontent.com/dbreskovit/json-api-products-w12/refs/heads/main/_database.json');
+        const products = response.data.products;
+        const selectedProduct = products.find((item) => item.id === parseInt(id));
+        if (selectedProduct) {
+          setProduct(selectedProduct);
+          setSelectedImage(selectedProduct.images.mainImage);
+        } else {
+          console.error('Product not found');
+        }
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -41,8 +47,8 @@ const Detail = () => {
     updateCart({
       id: product.id,
       title: product.title,
-      image: product.image,
-      price: product.price,
+      image: product.images.mainImage,
+      price: product.salePrice,
       quantity,
       size: selectedSize,
       color: selectedColor,
@@ -59,8 +65,8 @@ const Detail = () => {
       <SubHeader product={product} />
       <div className='container px-5 mx-auto font-poppins justify-center mt-[35px] xl:flex'>
         <div className='flex flex-col-reverse justify-center gap-[30px] 2xl:flex-row m-10'>
-          <div className='flex  pb-5 2xl:flex-col 2xl:space-y-4'>
-            {product.images.map((img, index) => (
+          <div className='flex pb-5 2xl:flex-col 2xl:space-y-4'>
+            {product.images.gallery.map((img, index) => (
               <img
                 key={index}
                 src={`${img}`}
@@ -74,18 +80,18 @@ const Detail = () => {
         </div>
         <div className='mr-5'>
           <h2 className='text-[42px] font-normal'>{product.title}</h2>
-          <p className='text-2xl font-medium text-secondary mb-[15px]'>R$ {product.price.toFixed(2)}</p>
+          <p className='text-2xl font-medium text-secondary mb-[15px]'>R$ {product.salePrice.toFixed(2)}</p>
           <div className='flex items-center space-x-1 mt-2'>
-            {[...Array(Math.floor(product.reviews))].map((_, i) => (
+            {[...Array(Math.floor(product.rating))].map((_, i) => (
               <BsStarFill key={i} className='text-yellow-500' />
             ))}
-            {product.reviews % 1 !== 0 && <BsStarHalf className='text-yellow-500' />}
-            {[...Array(5 - Math.ceil(product.reviews))].map((_, i) => (
+            {product.rating % 1 !== 0 && <BsStarHalf className='text-yellow-500' />}
+            {[...Array(5 - Math.ceil(product.rating))].map((_, i) => (
               <BsStar key={i} className='text-yellow-500' />
             ))}
           </div>
           <div className='mt-6'>
-            <p className='w-[424px] text-[13px] font-normal mb-[22px]'>{product.description}</p>
+            <p className='w-[424px] text-[13px] font-normal mb-[22px]'>{product.description.short} {product.description.long}</p>
             <span className='font-normal text-secondary text-[14px]'>Size: </span>
             <div className='flex space-x-2 mt-2'>
               {product.sizes.map((size) => (
@@ -102,12 +108,12 @@ const Detail = () => {
           <div className='mt-6'>
             <span className='font-normal text-secondary text-[14px]'>Color: </span>
             <div className='flex space-x-2 mt-2'>
-              {product.colors.map((color) => (
+              {product.colors.map((colorObj) => (
                 <button
-                  key={color}
-                  className={`w-8 h-8 rounded-full border ${selectedColor === color ? 'border-2 border-black' : ''}`}
-                  style={{ backgroundColor: color }}
-                  onClick={() => setSelectedColor(color)}
+                  key={colorObj.name}
+                  className={`w-8 h-8 rounded-full border ${selectedColor === colorObj.name ? 'border-2 border-black' : ''}`}
+                  style={{ backgroundColor: colorObj.hex }}
+                  onClick={() => setSelectedColor(colorObj.name)}
                 />
               ))}
             </div>
@@ -149,12 +155,11 @@ const Detail = () => {
           <h3 className='font-normal text-secondary'>Additional Information</h3>
         </div>
         <div className='text-base text-secondary'>
-          <p className='mb-8 text-justify'>{product.description}</p>
-          <p className='mb-9 text-justify'>{product.additionalinfo}</p>
+          <p className='mb-8 text-justify'>{product.description.long}</p>
         </div>
         <div className='xl:flex 2xl:flex 2xl:items-center 2xl:justify-center gap-[29px]'>
-          <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]' />
-          <img src={`${product.image}`} alt={product.title} className='object-cover w-[605px] h-[348px]'/>
+          <img src={`${product.images.mainImage}`} alt={product.title} className='object-cover w-[605px] h-[348px]' />
+          <img src={`${product.images.gallery}`} alt={product.title} className='object-cover w-[605px] h-[348px]'/>
         </div>
         <div>
           <RelatedDetails category={product.category} />
