@@ -5,7 +5,6 @@ import share from '../assets/share.png';
 import compare from '../assets/compare.png';
 import Heart from '../assets/Heart.png';
 
-
 interface Product {
   id: number;
   image: string;
@@ -22,8 +21,21 @@ const OurProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://18.116.69.3:3000/posts');
-        setProducts(shuffleArray(response.data));
+        const response = await axios.get('https://raw.githubusercontent.com/dbreskovit/json-api-products-w12/refs/heads/main/_database.json');
+        const adaptedProducts = response.data.products.map((product: {
+          id: number,
+          images: { mainImage: string },
+          title: string,
+          description: { short: string },
+          salePrice: number
+        }) => ({
+          id: product.id,
+          image: product.images.mainImage,
+          title: product.title,
+          text: product.description.short,
+          price: product.salePrice
+        }));
+        setProducts(shuffleArray(adaptedProducts));
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -46,10 +58,10 @@ const OurProducts = () => {
       <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {visibleProducts.map(product => (
-          <div key={product.id} className="relative group w-[285px] h-[446px] bg-quartiary">
-            <img src={product.image} alt={product.title} className="w-full h-[301px] object-cover mb-4" />
-            <h3 className="text-2xl font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
-            <p className="text-base text-tertiary ml-4 mb-2">{product.text}</p>
+          <div key={product.id} className="relative group w-[285px] h-[500px] bg-quartiary">
+            <img src={product.image} alt={product.title} className="w-full h-[200px] object-cover mb-4" />
+            <h3 className="text-lg font-semibold ml-4 mt-4 mb-2">{product.title}</h3>
+            <p className="text-sm text-tertiary ml-4 mb-2">{product.text}</p>
             <p className="font-semibold text-xl ml-4">R$ {product.price.toFixed(2)}</p>
 
             <div className="absolute inset-0 bg-focused bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
