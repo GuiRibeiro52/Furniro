@@ -10,29 +10,29 @@ const Carousel = () => {
       id: 1,
       category: "Bed Room",
       title: "Inner Peace",
-      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Mobly-Guarda-Roupa-Casal-com-Espelho-Paris-3-PT-2-GV-Naturale-4655-3919401-1.jpg",
-      link: "/product/27"
+      image: "https://static.mobly.com.br/p/Mobly-Guarda-Roupa-Casal-com-Espelho-ValC3AAncia-2-PT-6-GV-Branco-4758-1029401-1.jpg",
+      link: "/product/31"
     },
     {
       id: 2,
       category: "Living Room",
       title: "Modern Style",
-      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Mobly-SofC3A1-3-Lugares-RetrC3A1til-e-ReclinC3A1vel-Lupin-Linho-Cru-4214-5391811-2.jpg",
-      link: "/product/32"
+      image: "https://static.mobly.com.br/p/Mobly-SofC3A1-RetrC3A1til-Sem-Caixa-3-lugares-Solomons-Linho-Bege-2636-3691811-1.jpg",
+      link: "/product/15"
     },
     {
       id: 3,
       category: "Office",
       title: "Professional Look",
-      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Mobly-Mesa-de-EscritC3B3rio-em-L-Nero-Branco-0408-661122-2.jpg",
+      image: "https://static.mobly.com.br/p/Mobly-Mesa-de-EscritC3B3rio-em-L-Nero-Branco-0408-661122-2.jpg",
       link: "/product/29"
     },
     {
       id: 4,
       category: "Dining Room",
       title: "Cozy Meal",
-      image: "https://furniro001.s3.us-east-2.amazonaws.com/images/Madesa-ArmC3A1rio-de-Cozinha-Completa-Madesa-Emilly-Box-com-BalcC3A3o-e-AC3A9reo-Vidro---Rustic2FPreto-9860-211339-1.jpg",
-      link: "/product/20"
+      image: "https://static.mobly.com.br/p/Madesa-ArmC3A1rio-de-Cozinha-Completa-Madesa-Emilly-Box-com-BalcC3A3o-e-AC3A9reo-Vidro---Rustic2FPreto-9860-211339-1.jpg",
+      link: "/product/38"
     },
   ];
 
