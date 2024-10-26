@@ -55,7 +55,7 @@ const Carousel = () => {
       <div className="md:w-1/3 p-8">
         <h2 className="text-3xl font-bold mb-4">50+ Beautiful rooms inspiration</h2>
         <p className="text-lg mb-4">Our designer already made a lot of beautiful prototype of rooms that inspire you</p>
-        <button className="px-6 py-3 bg-button text-white rounded-md">Explore More</button>
+        <button className="px-6 py-3 bg-button text-white rounded-md"><Link to='/shop'>Explore More</Link></button>
       </div>
       <div className="md:w-2/3">
         <Slider {...settings}>
