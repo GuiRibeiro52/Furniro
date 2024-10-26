@@ -33,15 +33,15 @@ const Home = () => {
       </div>
 
       <div className="mb-14 lg:flex lg:items-center lg:justify-center lg:gap-5 lg:mb-14 lg:mx-4">
-        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['table', 'cabinet'])}>
+        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['Mesas', 'Armarios'])}>
           <img src={Dining} alt="Dining" className="mb-8" />
           <h3 className="font-semibold text-2xl text-headers">Dining</h3>
         </div>
-        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['sofa', 'rack'])}>
+        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['Sofás', 'Racks'])}>
           <img src={Living} alt="Living" className="mb-8"/>
           <h3 className="font-semibold text-2xl text-headers">Living</h3>
         </div>
-        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['closet'])}>
+        <div className="flex flex-col items-center cursor-pointer" onClick={() => handleNavigate(['Armarios'])}>
           <img src={bedroom} alt="Bedroom" className="mb-8"/>
           <h3 className="font-semibold text-2xl text-headers">Bedroom</h3>
         </div>
