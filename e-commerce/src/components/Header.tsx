@@ -120,13 +120,13 @@ const Header = () => {
                     <div className='flex items-center pt-[42px]'>
                       <img src={`${item.image}`} alt={item.title} className='w-24 h-24 object-cover rounded'/>
                       <div className='ml-4'>
-                        <p className='font-normal'>{item.title}</p>
-                        <p className='font-normal'>Tamanho: {item.size}</p>
-                        <p className='font-light text-base'>{item.quantity} x <span className='text-button font-bold text-xs'>R$ {item.price.toFixed(2)}</span></p>
+                        <p className='font-normal text-sm'>{item.title}</p>
+                        <p className='font-normal text-sm'>Tamanho: {item.size}</p>
+                        <p className='font-light text-sm'>{item.quantity} x <span className='text-button font-bold text-xs'>R$ {item.price.toFixed(2)}</span></p>
                       </div>
                     </div>
                     <div className='flex items-center'>
-                      <p className='font-medium'>R$ {(item.price * item.quantity).toFixed(2)}</p>
+                      <p className='font-bold'>R$ {(item.price * item.quantity).toFixed(2)}</p>
                       <button
                         onClick={() => removeFromCart(item.id)}
                         className='ml-4 bg-secondary text-white rounded-full w-6 h-6 flex items-center justify-center'

@@ -49,8 +49,8 @@ const Cart = () => {
                   <img src={`${item.image}`} alt={item.title} className="hidden sm:block w-20 h-20 object-cover rounded mr-4"/>                
                 </td>
                 <td>
-                  <span className='text-secondary'>{item.title}</span><br/>
-                  <span className='text-secondary'>Tamanho: {item.size}</span>                  
+                  <span className='text-secondary text-sm'>{item.title}</span><br/>
+                  <span className='text-secondary text-sm'>Tamanho: {item.size}</span>                  
                 </td>
                 <td className="py-4 text-secondary">
                   R$ {item.price.toFixed(2)}
